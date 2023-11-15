@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WIFI</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        width: 100%;
+      }
+
+      #root {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #f8f8f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+      }
+
+      #wifi-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      #wifi-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+			h1 {
+				text-align: center;
+			}
+
+      .wifi-list {
+				height: 300px;
+        width: 100%;
+				overflow-y: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .wifi-item {
+        width: 90%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .wifi-item:hover {
+        background-color: #e0e0e0;
+      }
+
+      .wifi-avatar {
+        background-color: #fff;
+        margin-right: 10px;
+      }
+
+      #password-input {
+        width: 100%;
+        margin-top: 10px;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+
+      #connect-buttons {
+        margin-top: auto;
+        width: 100%;
+        padding-top: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .loading-button {
+        width: 48%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .loading-button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div id="wifi-container">
+				<h1>WIFI</h1>
+				<div id="wifi-form">
+          <div class="wifi-list" id="wifi-list"></div>
+          <input
+            type="password"
+            id="password-input"
+            placeholder="Password"
+            style="display: none"
+          />
+
+          <div id="connect-buttons">
+            <button class="loading-button" onclick="connectWiFi()">連線</button>
+            <button class="loading-button" onclick="jumpToSettings()">
+              WIFI
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const wifiList = [
+        { name: "Wifi", id: "1", lock: true },
+        { name: "Wifi1", id: "2", lock: true },
+        { name: "Wifi2", id: "3", lock: false },
+        { name: "Wifi", id: "1", lock: true },
+        { name: "Wifi1", id: "2", lock: true },
+        { name: "Wifi2", id: "3", lock: false },
+        { name: "Wifi", id: "1", lock: true },
+        { name: "Wifi1", id: "2", lock: true },
+        { name: "Wifi2", id: "3", lock: false },
+      ];
+
+      function connectWiFi() {
+        const wifiListContainer = document.getElementById("wifi-list");
+        wifiListContainer.innerHTML = "";
+
+        wifiList.forEach((wifi, index) => {
+          const wifiItem = document.createElement("div");
+          wifiItem.className = "wifi-item";
+          wifiItem.innerHTML = `
+                    <div class="wifi-avatar">
+                        ${wifi.lock ? `<span>🔒</span>` : `<span>📶</span>`}
+                    </div>
+                    <div>${wifi.name}</div>
+                `;
+          wifiItem.addEventListener("click", () =>
+            handleWiFiClick(wifi, index)
+          );
+          wifiListContainer.appendChild(wifiItem);
+        });
+
+        const passwordInput = document.getElementById("password-input");
+        passwordInput.style.display = "block";
+      }
+
+      function handleWiFiClick(wifi, index) {
+        const wifiListContainer = document.getElementById("wifi-list");
+        const wifiItems = wifiListContainer.getElementsByClassName("wifi-item");
+
+        Array.from(wifiItems).forEach((item, i) => {
+          item.style.backgroundColor = i === index ? "#E0E0E0" : "transparent";
+        });
+
+        const passwordInput = document.getElementById("password-input");
+        passwordInput.value = wifi.password || "";
+      }
+
+      function jumpToSettings() {
+        console.log("Jumping to settings...");
+      }
+    </script>
+  </body>
+</html>
