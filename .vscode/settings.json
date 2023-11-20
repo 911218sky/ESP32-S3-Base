@@ -52,5 +52,6 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "set": "cpp"
-    }
+    },
+    "commentTranslate.multiLineMerge": true
 }

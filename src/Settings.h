@@ -13,6 +13,8 @@
 
 #define QRCODR_URL "http://192.168.4.1"
 
+#define SETTING_FILE "/SETTING.json"
+
 #ifndef _ESPAsyncWebServer_H_
 #include <ESPAsyncWebServer.h>
 #endif
