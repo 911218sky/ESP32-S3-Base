@@ -32,5 +32,4 @@ void _QRcodeUtensil::draw(const char *data)
     }
 }
 
-
 _QRcodeUtensil QRcodeUtensil;

@@ -11,7 +11,8 @@
 #define SCL_PIN 21
 #define SDA_PIN 20
 
-#define QRCODR_URL "http://192.168.4.1"
+#define IP_ADDRESS "192.168.4.1"
+#define QRCODR_URL ("http://" + std::string(IP_ADDRESS)).c_str()
 
 #define SETTING_FILE "/SETTING.json"
 
@@ -35,7 +36,12 @@
 #include <Adafruit_SSD1306.h>
 #endif
 
-extern AsyncWebServer server; 
+class _Settings;
+
+extern AsyncWebServer server;
 extern Adafruit_SSD1306 display;
+
+void printSpace();
+void printWifiInformation();
 
 #endif

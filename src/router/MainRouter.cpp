@@ -17,7 +17,8 @@ void _MainRouter::begin()
 
 void _MainRouter::handleRootDirectoryRequest(AsyncWebServerRequest *request)
 {
-    request->redirect("http://192.168.4.1/api/resource?page=s");
+
+    request->redirect("http://" + String(IP_ADDRESS) + "/resource/index");
 }
 
 _MainRouter MainRouter;

@@ -1,7 +1,7 @@
-#ifndef _ROUTER_RESOURCE_H_
-#define _ROUTER_RESOURCE_H_
+#ifndef _RESOURCE_ROUTER_H_
+#define _RESOURCE_ROUTER_H_
 
-class _RouterResource;
+class _ResourceRouter;
 
 #ifndef _ESPAsyncWebServer_H_
 #include <ESPAsyncWebServer.h>
@@ -19,17 +19,16 @@ class _RouterResource;
 #include <string>
 #endif
 
-class _RouterResource
+class _ResourceRouter
 {
 private:
     static std::unordered_map<std::string, std::string> pageChart;
-    static void handleHTMLResourceRequest(AsyncWebServerRequest *);
-
+    static void handleResourceRequest(AsyncWebServerRequest *);
 public:
-    _RouterResource();
+    _ResourceRouter();
     void begin();
 };
 
-extern _RouterResource RouterResource;
+extern _ResourceRouter ResourceRouter;
 
 #endif

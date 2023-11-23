@@ -5,7 +5,6 @@ _JsonFileManager::_JsonFileManager()
 {
 }
 
-
 void _JsonFileManager::writeJson(const char *filename, DynamicJsonDocument &doc)
 {
     // Open file for writing or create it if it doesn't exist
@@ -61,7 +60,8 @@ bool _JsonFileManager::readJson(const char *filename, DynamicJsonDocument &doc)
     // Open the file for reading
     File file = SPIFFS.open(filename, "r");
 
-    if (!file) {
+    if (!file)
+    {
         Serial.println(F("Failed to open file for reading"));
         return false;
     }
@@ -71,7 +71,8 @@ bool _JsonFileManager::readJson(const char *filename, DynamicJsonDocument &doc)
 
     // Deserialize data from the JSON document
     DeserializationError error = deserializeJson(localDoc, file);
-    if (error) {
+    if (error)
+    {
         Serial.println(F("Failed to read file, using default configuration"));
         file.close();
         return false;
@@ -85,13 +86,14 @@ bool _JsonFileManager::readJson(const char *filename, DynamicJsonDocument &doc)
     return true; // Don't forget to return true if the operation was successful
 }
 
-
-void _JsonFileManager::printFile(const char *filename) {
+void _JsonFileManager::printFile(const char *filename)
+{
     // Open file for reading
     File file = SPIFFS.open(filename, FILE_READ);
 
     // Check if the file is available
-    if (!file) {
+    if (!file)
+    {
         Serial.println(F("Failed to open file for reading"));
         return;
     }
@@ -99,7 +101,8 @@ void _JsonFileManager::printFile(const char *filename) {
     Serial.println(F("File Content:"));
 
     // Read file and print to the Serial
-    while (file.available()) {
+    while (file.available())
+    {
         // You can read and print line by line
         String line = file.readStringUntil('\n');
         Serial.println(line);
